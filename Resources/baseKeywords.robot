@@ -14,5 +14,5 @@ Abrir navegador
     SeleniumLibrary.Wait Until Page Contains Element    ${LOGO}    5
     
 Fechar navegador    
-    Log To Console    -> Fechando navegador...\n
+    Log To Console    \n-> Fechando navegador...\n
     Close Browser    
