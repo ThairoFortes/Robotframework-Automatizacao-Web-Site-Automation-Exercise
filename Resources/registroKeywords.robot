@@ -28,6 +28,10 @@ ${CAMPO_OFERTAS}           id=optin
 ${BOTAO_CRIAR_CONTA}       xpath=//button[@type='submit'][contains(.,'Create Account')]
 ${CONTA_CRIADA}            xpath=//b[contains(.,'Account Created!')] 
 ${BOTAO_CONTINUAR}         xpath=//a[contains(@data-qa,'continue-button')] 
+${NOME_USUARIO}            Nome01
+${EMAIL_USUARIO}           nome01@gmail.com
+${USUARIO_LOGADO}          xpath=//a[contains(.,'Logged in as ${NOME_USUARIO}')] 
+
 
 *** Keywords ***
 Clique no botão 'Signup / Login'
@@ -46,8 +50,8 @@ Verifique 'Inscrição de novo usuário!' é visível
 Digite o nome e endereço de e-mail
     Log To Console    \n-> Digitando nome e e-mail...\n
 
-    SeleniumLibrary.Input Text    ${CAMPO_NOME}     Nome01
-    SeleniumLibrary.Input Text    ${CAMPO_EMAIL}    nome01@gmail.com
+    SeleniumLibrary.Input Text    ${CAMPO_NOME}     ${NOME_USUARIO}
+    SeleniumLibrary.Input Text    ${CAMPO_EMAIL}    ${EMAIL_USUARIO}
     SeleniumLibrary.Capture Page Screenshot
 
 Clique no botão 'Inscrever-se'    
@@ -97,7 +101,12 @@ Preencha todos os dados
 Clique no botão 'Continuar'
     Log To Console    \n-> Clicando no botão para continuar...\n
 
-    SeleniumLibrary.Clear Element Text    ${BOTAO_CONTINUAR}
+    SeleniumLibrary.Click Element    ${BOTAO_CONTINUAR}
+    Sleep    5
+    SeleniumLibrary.Press Keys    str=Esc
 
 Verifique se 'Logado como nome de usuário' está visível
-
+    Log To Console    \n-> Verificando se novo usuário está logado...\n
+        
+    SeleniumLibrary.Page Should Contain Element    ${USUARIO_LOGADO}
+    SeleniumLibrary.Capture Page Screenshot 

@@ -5,7 +5,7 @@ Resource         ../Resources/baseKeywords.robot
 Resource         ../Resources/registroKeywords.robot
 
 Test Setup       Abrir navegador
-Test Teardown    Fechar navegador
+#Test Teardown    Fechar navegador
 
 *** Test Cases ***
 Caso de Teste 1: Registrar Usuário
